@@ -1,0 +1,18 @@
+(dp1
+S'SourceID'
+p2
+S'INT'
+p3
+sS'TargetID'
+p4
+S'INT'
+p5
+sS'id'
+p6
+S'INT AUTO_INCREMENT NOT NULL'
+p7
+sS'TitleID'
+p8
+S'INT'
+p9
+s.

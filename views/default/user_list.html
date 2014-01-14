@@ -1,0 +1,55 @@
+{{extend 'marvels_layout.html'}}
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Role</th>
+      <th>Institutional Affiliation</th>
+      <th>City</th>
+      <th>State or Province</th>
+      <th>Country</th>
+      {{if auth.has_membership('admin'):}}
+      <th>Status</th>
+      <th>Edit</th>
+      <th>Make admin</th>
+      <th>Revoke admin</th>
+      <th>Block</th>
+      <th>Unblock</th>
+      {{pass}}
+    </tr>
+  </thead>  
+<tbody>
+{{if auth.has_membership('admin'):}}
+{{for entry in users:}}
+     {{color=""}}
+     {{status=""}}
+     {{if auth.has_membership(None,entry.id,'admin'):}}
+          {{status="Admin "}}
+     {{pass}}
+     {{if entry.registration_key=='blocked':}}
+          {{color="F8"}}
+          {{status=status+"Blocked"}}
+     {{elif entry.registration_key=='pending':}}
+          {{color="Cooler"}}
+          {{status=status+"Waiting for approval"}}
+     {{elif auth.has_membership(None,entry.id,'admin'):}}
+          {{color="Bright"}}
+     {{pass}}
+     {{=TR(entry.first_name, entry.last_name, entry.role, entry.institutional_affiliation, entry.city, entry.state_or_province, entry.country, status,
+     A('Edit', _href='/'+request.application+'/default/edit_user/'+str(entry.id)),
+     A('Make admin', _href='/'+request.application+'/default/user_list/make_admin/'+str(entry.id)),
+     A('Revoke admin', _href='/'+request.application+'/default/user_list/revoke_admin/'+str(entry.id)),
+     A('Block', _href='/'+request.application+'/default/user_list/block/'+str(entry.id)),
+     A('Unblock', _href='/'+request.application+'/default/user_list/unblock/'+str(entry.id)),
+     _class=color)}}
+{{pass}}
+{{else:}}
+{{for entry in users:}}
+     {{color=""}}
+     {{if auth.has_membership(None,entry.id,'admin'):}}
+          {{color="Bright"}}
+     {{pass}}
+     {{=TR(entry.first_name, entry.last_name, entry.role, entry.institutional_affiliation, entry.city, entry.state_or_province, entry.country, _class=color)}}
+{{pass}}
+{{pass}}
+</tbody>

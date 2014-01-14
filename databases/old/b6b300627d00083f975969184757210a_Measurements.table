@@ -1,0 +1,50 @@
+(dp1
+S'timestamp_created'
+p2
+S'DATETIME'
+p3
+sS'modified_by'
+p4
+S'VARCHAR(100)'
+p5
+sS'target_id'
+p6
+S'INT'
+p7
+sS'timestamp_modified'
+p8
+S'DATETIME'
+p9
+sS'value'
+p10
+S'VARCHAR(100)'
+p11
+sS'source'
+p12
+S'INT, INDEX source__idx (source), FOREIGN KEY (source) REFERENCES measurements_sources(id) ON DELETE CASCADE'
+p13
+sS'measured_by'
+p14
+S'VARCHAR(100)'
+p15
+sS'created_by'
+p16
+S'VARCHAR(100)'
+p17
+sS'units'
+p18
+S'INT, INDEX units__idx (units), FOREIGN KEY (units) REFERENCES measurements_units(id) ON DELETE CASCADE'
+p19
+sS'property'
+p20
+S'INT, INDEX property__idx (property), FOREIGN KEY (property) REFERENCES measurements_properties(id) ON DELETE CASCADE'
+p21
+sS'id'
+p22
+S'INT AUTO_INCREMENT NOT NULL'
+p23
+sS'timestamp_taken'
+p24
+S'DATETIME'
+p25
+s.

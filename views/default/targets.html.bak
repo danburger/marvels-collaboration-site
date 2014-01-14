@@ -1,0 +1,60 @@
+{{extend 'marvels_layout.html'}}
+
+  <thead>
+    <tr>
+        <th>Target Number</th>
+        <th>GSC Name</th>
+        <th>TYC Name</th>
+        <th>HIP Name</th>
+        <th>2MASS Name</th>
+        <th>Final RA (deg)</th>
+        <th>Final DEC (deg)</th>
+        <th>GSC B Mag</th>
+        <th>GSC V Mag</th>
+        <th>2MASS J Mag</th>
+        <th>2MASS H Mag</th>
+        <th>2MASS K Mag</th>
+        <th>Sp. Type 1</th>
+        <th>Sp. Type 2</th>
+        <th>Lumin. Class</th>
+        <th>Teff</th>
+        <th>log(g)</th>
+        <th>[Fe/H]</th>
+        <th>GSC B Mag Err</th>
+        <th>GSC V Mag Err</th>
+        <th>2MASS J Mag Err</th>
+        <th>2MASS H Mag Err</th>
+        <th>2MASS K Mag Err</th>
+        <th>Teff Err</th>
+        <th>log(g) Err</th>
+        <th>[Fe/H] Err</th>
+        <th>Epoch_0</th>
+        <th>RA_0 (deg)</th>
+        <th>DEC_0 (deg)</th>
+        <th>2MASS RA</th>
+        <th>2MASS DEC</th>
+        <th>GSC PM_RA</th>
+        <th>GSC PM_DEC</th>
+        <th>GSC PM_RA_Err</th>
+        <th>GSC PM_DEC_Err</th>
+        <th>TYC B Mag</th>
+        <th>TYC B Mag Err</th>
+        <th>TYC V Mag</th>
+        <th>TYC V Mag Err</th>
+        <th>HIP PLX</th>
+        <th>HIP PLX ERR</th>
+        <th>HIP SP TYPE</th>
+        <th>Measurements</th>
+    </tr>
+  </thead> 
+<tbody>
+{{color = ""}}
+{{for entry in targets:}}
+     {{color = ""}}
+     {{if(entry.teff==None): color="Bright"}}
+     {{if(entry.teff!=None and (entry.teff + entry.teff_err)<5800): color="Cooler"}}
+     {{if(entry.teff!=None and (entry.teff + entry.teff_err)>=5800 and (entry.teff + entry.teff_err)<6250): color="F8"}}
+     {{if(entry.lumin_class=="RefStar"): color="Ref"}}
+     {{=TR(entry.target_number, entry.gsc_name, entry.tyc_name, entry.hip_name, entry.twomass_name, entry.final_ra_deg, entry.final_dec_deg, entry.gsc_b_mag, entry.gsc_v_mag, entry.twomass_j_mag, entry.twomass_h_mag, entry.twomass_k_mag, entry.sp_type_1, entry.sp_type_2, entry.lumin_class, entry.teff, entry.log_g, entry.fe_h, entry.gsc_b_mag_err, entry.gsc_v_mag_err, entry.twomass_j_mag_err, entry.twomass_h_mag_err, entry.twomass_k_mag_err, entry.teff_err, entry.log_g_err, entry.fe_h_err, entry.epoch_zero_deg, entry.ra_zero_deg, entry.dec_zero_deg, entry.twomass_ra_deg, entry.twomass_dec_deg, entry.gsc_pm_ra, entry.gsc_pm_dec, entry.gsc_pm_ra_err, entry.gsc_pm_dec_err, entry.tyc_b_mag, entry.tyc_v_mag, entry.tyc_b_mag_err, entry.tyc_v_mag_err, entry.hip_plx, entry.hip_plx_err, entry.hip_sp_type, A('Measurements', _href=URL('measurements', args=entry.id)), _class=color)}}
+{{pass}}
+</tbody>

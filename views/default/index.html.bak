@@ -1,0 +1,17 @@
+{{extend 'marvels_form.html'}}
+  <thead>
+    <tr>
+      <th>Field Name</th>
+      <th>Number of Targets</th>
+      <th># of Targets 7.6&lt;V&lt;10 And J-K&lt;0.29</th>
+      <th>Faintest Target (V-band)</th>
+      <th>Plate Center RA (DEG)</th>
+      <th>Plate Center DEC (DEG)</th>
+      <th>Targets</th>
+    </tr>
+  </thead>  
+<tbody>
+{{for entry in fielddesign:}}
+     {{=TR(entry.field_name, entry.number_of_targets, entry.number_of_good_targets, entry.faintest_target, entry.plate_center_ra, entry.plate_center_dec, A('Targets', _href=URL('targets', args=entry.id)))}}
+{{pass}}
+</tbody>

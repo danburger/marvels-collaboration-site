@@ -1,0 +1,955 @@
+timestamp: 2010-10-08T14:36:31.819636
+CREATE TABLE fielddesign(
+    id INT AUTO_INCREMENT NOT NULL,
+    field_name VARCHAR(100),
+    number_of_targets INT,
+    number_of_good_targets INT,
+    faintest_target DOUBLE,
+    plate_center_ra DOUBLE,
+    plate_center_dec DOUBLE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-08T14:36:31.847930
+CREATE TABLE targets(
+    id INT AUTO_INCREMENT NOT NULL,
+    field_id INT,
+    target_number INT,
+    gsc_name VARCHAR(15),
+    tyc_name VARCHAR(16),
+    hip_name VARCHAR(9),
+    twomass_name VARCHAR(23),
+    final_ra_deg DOUBLE,
+    final_dec_deg DOUBLE,
+    gsc_b_mag DOUBLE,
+    gsc_v_mag DOUBLE,
+    twomass_j_mag DOUBLE,
+    twomass_h_mag DOUBLE,
+    twomass_k_mag DOUBLE,
+    sp_type_1 VARCHAR(3),
+    sp_type_2 VARCHAR(3),
+    lumin_class VARCHAR(7),
+    teff DOUBLE,
+    log_g DOUBLE,
+    fe_h DOUBLE,
+    gsc_b_mag_err DOUBLE,
+    gsc_v_mag_err DOUBLE,
+    twomass_j_mag_err DOUBLE,
+    twomass_h_mag_err DOUBLE,
+    twomass_k_mag_err DOUBLE,
+    teff_err DOUBLE,
+    log_g_err DOUBLE,
+    fe_h_err DOUBLE,
+    epoch_zero_deg DOUBLE,
+    ra_zero_deg DOUBLE,
+    dec_zero_deg DOUBLE,
+    twomass_ra_deg DOUBLE,
+    twomass_dec_deg DOUBLE,
+    gsc_pm_ra DOUBLE,
+    gsc_pm_dec DOUBLE,
+    gsc_pm_ra_err DOUBLE,
+    gsc_pm_dec_err DOUBLE,
+    tyc_b_mag DOUBLE,
+    tyc_v_mag DOUBLE,
+    tyc_b_mag_err DOUBLE,
+    tyc_v_mag_err DOUBLE,
+    hip_plx DOUBLE,
+    hip_plx_err DOUBLE,
+    hip_sp_type VARCHAR(12),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-08T14:36:31.858422
+CREATE TABLE Targets2(
+    id INT AUTO_INCREMENT NOT NULL,
+    FieldID INT,
+    TargetNumber INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-08T14:36:31.865380
+CREATE TABLE CatalogProperties(
+    id INT AUTO_INCREMENT NOT NULL,
+    TargetID INT,
+    TitleID INT,
+    SourceID INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-08T14:36:31.872698
+CREATE TABLE StringCatalogProperties(
+    id INT AUTO_INCREMENT NOT NULL,
+    CatalogID INT,
+    Value VARCHAR(100),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-08T14:36:31.881395
+CREATE TABLE FloatCatalogProperties(
+    id INT AUTO_INCREMENT NOT NULL,
+    CatalogID INT,
+    Value DOUBLE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-08T14:36:31.889389
+CREATE TABLE CatalogTitles(
+    id INT AUTO_INCREMENT NOT NULL,
+    Title VARCHAR(512),
+    DataType VARCHAR(512),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-08T14:36:31.898215
+CREATE TABLE CatalogSources(
+    id INT AUTO_INCREMENT NOT NULL,
+    Source VARCHAR(512),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-08T14:36:31.907167
+CREATE TABLE MeasurementProperties(
+    id INT AUTO_INCREMENT NOT NULL,
+    TargetID INT,
+    TitleID INT,
+    Source VARCHAR(512),
+    TimestampTaken DATETIME,
+    TimestampCreated DATETIME,
+    TimestampModified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-08T14:36:31.915182
+CREATE TABLE StringMeasurementProperties(
+    id INT AUTO_INCREMENT NOT NULL,
+    MeasurementID INT,
+    Value VARCHAR(512),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-08T14:36:31.923191
+CREATE TABLE IntMeasurementProperties(
+    id INT AUTO_INCREMENT NOT NULL,
+    MeasurementID INT,
+    Value INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-08T14:36:31.931899
+CREATE TABLE FloatMeasurementProperties(
+    id INT AUTO_INCREMENT NOT NULL,
+    MeasurementID INT,
+    Value DOUBLE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-08T14:36:31.948453
+CREATE TABLE MeasurementTitles(
+    id INT AUTO_INCREMENT NOT NULL,
+    Title VARCHAR(512),
+    DataType VARCHAR(512),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-08T14:36:31.957122
+CREATE TABLE targets_test(
+    id INT AUTO_INCREMENT NOT NULL,
+    field_id INT,
+    target_number INT,
+    gsc_b_mag DOUBLE,
+    gsc_v_mag LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-08T14:36:31.966385
+CREATE TABLE Measurements(
+    id INT AUTO_INCREMENT NOT NULL,
+    TargetID INT,
+    Title VARCHAR(512),
+    Value DOUBLE,
+    Source VARCHAR(512),
+    TimestampTaken DATETIME,
+    TimestampCreated DATETIME,
+    TimestampModified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-11T09:42:09.420206
+ALTER TABLE Measurements DROP COLUMN timestamptaken;
+success!
+timestamp: 2010-10-11T09:49:23.841723
+ALTER TABLE Measurements ADD timestamptaken VARCHAR(512);
+success!
+timestamp: 2010-10-11T13:29:41.598214
+CREATE TABLE fielddesign(
+    id INT AUTO_INCREMENT NOT NULL,
+    field_name VARCHAR(100),
+    number_of_targets INT,
+    number_of_good_targets INT,
+    faintest_target DOUBLE,
+    plate_center_ra DOUBLE,
+    plate_center_dec DOUBLE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2010-10-11T13:31:09.705170
+CREATE TABLE Targets2(
+    id INT AUTO_INCREMENT NOT NULL,
+    FieldID INT,
+    TargetNumber INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2010-10-11T13:32:46.621804
+CREATE TABLE fielddesign(
+    id INT AUTO_INCREMENT NOT NULL,
+    field_name VARCHAR(100),
+    number_of_targets INT,
+    number_of_good_targets INT,
+    faintest_target DOUBLE,
+    plate_center_ra DOUBLE,
+    plate_center_dec DOUBLE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2010-10-11T15:03:41.660741
+CREATE TABLE Measurements(
+    id INT AUTO_INCREMENT NOT NULL,
+    TargetID INT,
+    Title VARCHAR(512),
+    Value DOUBLE,
+    Source VARCHAR(512),
+    TimestampTaken VARCHAR(512),
+    TimestampCreated DATETIME,
+    TimestampModified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2010-10-11T15:05:28.404227
+CREATE TABLE Measurements(
+    id INT AUTO_INCREMENT NOT NULL,
+    TargetID INT,
+    Title VARCHAR(512),
+    Value DOUBLE,
+    Source VARCHAR(512),
+    TimestampTaken VARCHAR(512),
+    TimestampCreated DATETIME,
+    TimestampModified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-14T10:30:49.183532
+CREATE TABLE Measurements(
+    id INT AUTO_INCREMENT NOT NULL,
+    TargetID INT,
+    Title VARCHAR(512),
+    Value DOUBLE,
+    Source VARCHAR(512),
+    TimestampTaken VARCHAR(512),
+    TimestampCreated DATETIME,
+    TimestampModified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2010-10-14T10:31:24.262661
+CREATE TABLE Measurements(
+    id INT AUTO_INCREMENT NOT NULL,
+    TargetID INT,
+    Title VARCHAR(512),
+    Value DOUBLE,
+    Source VARCHAR(512),
+    TimestampTaken VARCHAR(512),
+    TimestampCreated DATETIME,
+    TimestampModified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2010-10-14T10:48:51.616640
+CREATE TABLE Measurements(
+    id INT AUTO_INCREMENT NOT NULL,
+    TargetID INT,
+    Title VARCHAR(512),
+    Value DOUBLE,
+    Source VARCHAR(512),
+    TimestampTaken VARCHAR(512),
+    TimestampCreated DATETIME,
+    TimestampModified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-14T10:56:18.964563
+ALTER TABLE Measurements ADD property VARCHAR(512);
+success!
+timestamp: 2010-10-14T10:56:19.002322
+ALTER TABLE Measurements DROP COLUMN title;
+success!
+timestamp: 2010-10-14T11:15:43.248550
+CREATE TABLE measurements(
+    id INT AUTO_INCREMENT NOT NULL,
+    target_id INT,
+    property VARCHAR(512),
+    value DOUBLE,
+    source VARCHAR(512),
+    timestamp_taken VARCHAR(512),
+    timestamp_created DATETIME,
+    timestamp_modified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-14T11:38:46.986795
+ALTER TABLE measurements ADD modified_by VARCHAR(100);
+success!
+timestamp: 2010-10-14T11:38:47.013122
+ALTER TABLE measurements ADD value__tmp VARCHAR(100);
+success!
+UPDATE measurements SET value__tmp=value;
+success!
+ALTER TABLE measurements DROP COLUMN value;
+success!
+ALTER TABLE measurements ADD value VARCHAR(100);
+success!
+UPDATE measurements SET value=value__tmp;
+success!
+ALTER TABLE measurements DROP COLUMN value__tmp;
+success!
+timestamp: 2010-10-14T11:38:47.083843
+ALTER TABLE measurements ADD source__tmp INT;
+success!
+UPDATE measurements SET source__tmp=source;
+success!
+ALTER TABLE measurements DROP COLUMN source;
+success!
+ALTER TABLE measurements ADD source INT;
+success!
+UPDATE measurements SET source=source__tmp;
+success!
+ALTER TABLE measurements DROP COLUMN source__tmp;
+success!
+timestamp: 2010-10-14T11:38:47.181138
+ALTER TABLE measurements ADD measured_by VARCHAR(100);
+success!
+timestamp: 2010-10-14T11:38:47.191775
+ALTER TABLE measurements ADD created_by VARCHAR(100);
+success!
+timestamp: 2010-10-14T11:38:47.200502
+ALTER TABLE measurements ADD units INT;
+success!
+timestamp: 2010-10-14T11:38:47.223764
+ALTER TABLE measurements ADD property__tmp INT;
+success!
+UPDATE measurements SET property__tmp=property;
+success!
+ALTER TABLE measurements DROP COLUMN property;
+success!
+ALTER TABLE measurements ADD property INT;
+success!
+UPDATE measurements SET property=property__tmp;
+success!
+ALTER TABLE measurements DROP COLUMN property__tmp;
+success!
+timestamp: 2010-10-14T11:38:47.314235
+ALTER TABLE measurements ADD timestamp_taken__tmp VARCHAR(100);
+success!
+UPDATE measurements SET timestamp_taken__tmp=timestamp_taken;
+success!
+ALTER TABLE measurements DROP COLUMN timestamp_taken;
+success!
+ALTER TABLE measurements ADD timestamp_taken VARCHAR(100);
+success!
+UPDATE measurements SET timestamp_taken=timestamp_taken__tmp;
+success!
+ALTER TABLE measurements DROP COLUMN timestamp_taken__tmp;
+success!
+timestamp: 2010-10-14T11:38:47.406912
+CREATE TABLE measurements_properties(
+    id INT AUTO_INCREMENT NOT NULL,
+    property VARCHAR(100),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-14T11:38:47.417736
+CREATE TABLE measurements_units(
+    id INT AUTO_INCREMENT NOT NULL,
+    unit VARCHAR(100),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-14T11:38:47.445082
+CREATE TABLE measurements_sources(
+    id INT AUTO_INCREMENT NOT NULL,
+    source VARCHAR(100),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-14T11:43:48.470734
+ALTER TABLE measurements ADD property__tmp INT, ADD INDEX property__idx (property), ADD FOREIGN KEY (property) REFERENCES measurements_properties(id) ON DELETE CASCADE;
+success!
+UPDATE measurements SET property__tmp=property;
+success!
+ALTER TABLE measurements DROP COLUMN property;
+timestamp: 2010-10-14T11:45:08.246129
+CREATE TABLE measurements2(
+    id INT AUTO_INCREMENT NOT NULL,
+    target_id INT,
+    property INT, INDEX property__idx (property), FOREIGN KEY (property) REFERENCES measurements_properties(id) ON DELETE CASCADE,
+    value VARCHAR(100),
+    units INT,
+    source INT,
+    measured_by VARCHAR(100),
+    timestamp_taken VARCHAR(100),
+    created_by VARCHAR(100),
+    timestamp_created DATETIME,
+    modified_by VARCHAR(100),
+    timestamp_modified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-14T11:46:41.551452
+CREATE TABLE measurements3(
+    id INT AUTO_INCREMENT NOT NULL,
+    target_id INT,
+    Property INT, INDEX Property__idx (Property), FOREIGN KEY (Property) REFERENCES measurements_properties(id) ON DELETE CASCADE,
+    value VARCHAR(100),
+    units INT,
+    source INT,
+    measured_by VARCHAR(100),
+    timestamp_taken VARCHAR(100),
+    created_by VARCHAR(100),
+    timestamp_created DATETIME,
+    modified_by VARCHAR(100),
+    timestamp_modified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-14T11:48:16.863774
+ALTER TABLE measurements ADD property__tmp INT;
+timestamp: 2010-10-14T11:48:28.364662
+ALTER TABLE measurements ADD property__tmp INT;
+timestamp: 2010-10-14T11:48:42.579764
+CREATE TABLE measurements4(
+    id INT AUTO_INCREMENT NOT NULL,
+    target_id INT,
+    property INT,
+    value VARCHAR(100),
+    units INT,
+    source INT,
+    measured_by VARCHAR(100),
+    timestamp_taken VARCHAR(100),
+    created_by VARCHAR(100),
+    timestamp_created DATETIME,
+    modified_by VARCHAR(100),
+    timestamp_modified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-14T11:49:18.831243
+CREATE TABLE measurements5(
+    id INT AUTO_INCREMENT NOT NULL,
+    target_id INT,
+    property INT, INDEX property__idx (property), FOREIGN KEY (property) REFERENCES measurements_properties(id) ON DELETE CASCADE,
+    value VARCHAR(100),
+    units INT,
+    source INT,
+    measured_by VARCHAR(100),
+    timestamp_taken VARCHAR(100),
+    created_by VARCHAR(100),
+    timestamp_created DATETIME,
+    modified_by VARCHAR(100),
+    timestamp_modified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-14T11:51:07.583160
+ALTER TABLE measurements ADD source__tmp INT, ADD INDEX source__idx (source), ADD FOREIGN KEY (source) REFERENCES measurements_sources(id) ON DELETE CASCADE;
+success!
+UPDATE measurements SET source__tmp=source;
+success!
+ALTER TABLE measurements DROP COLUMN source;
+timestamp: 2010-10-14T11:51:14.476315
+ALTER TABLE measurements ADD units__tmp INT, ADD INDEX units__idx (units), ADD FOREIGN KEY (units) REFERENCES measurements_units(id) ON DELETE CASCADE;
+success!
+UPDATE measurements SET units__tmp=units;
+success!
+ALTER TABLE measurements DROP COLUMN units;
+timestamp: 2010-10-14T12:02:34.412096
+ALTER TABLE measurements ADD title INT, ADD INDEX title__idx (title), ADD FOREIGN KEY (title) REFERENCES measurements_properties(id) ON DELETE CASCADE;
+success!
+timestamp: 2010-10-14T12:02:34.446216
+ALTER TABLE measurements DROP COLUMN property;
+timestamp: 2010-10-14T12:06:35.754140
+ALTER TABLE measurements DROP COLUMN title;
+timestamp: 2010-10-14T12:07:24.867569
+ALTER TABLE measurements DROP COLUMN title;
+timestamp: 2010-10-14T12:07:47.493619
+ALTER TABLE measurements DROP COLUMN title;
+timestamp: 2010-10-14T14:08:48.841667
+ALTER TABLE measurements DROP COLUMN title;
+timestamp: 2010-10-14T14:12:52.691626
+CREATE TABLE measurements(
+    id INT AUTO_INCREMENT NOT NULL,
+    target_id INT,
+    property INT, INDEX property__idx (property), FOREIGN KEY (property) REFERENCES measurements_properties(id) ON DELETE CASCADE,
+    value VARCHAR(100),
+    units INT, INDEX units__idx (units), FOREIGN KEY (units) REFERENCES measurements_units(id) ON DELETE CASCADE,
+    source INT, INDEX source__idx (source), FOREIGN KEY (source) REFERENCES measurements_sources(id) ON DELETE CASCADE,
+    measured_by VARCHAR(100),
+    timestamp_taken VARCHAR(100),
+    created_by VARCHAR(100),
+    timestamp_created DATETIME,
+    modified_by VARCHAR(100),
+    timestamp_modified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-14T14:14:44.141240
+CREATE TABLE measurements(
+    id INT AUTO_INCREMENT NOT NULL,
+    target_id INT,
+    property INT, INDEX property__idx (property), FOREIGN KEY (property) REFERENCES measurements_properties(id) ON DELETE CASCADE,
+    value VARCHAR(100),
+    units INT, INDEX units__idx (units), FOREIGN KEY (units) REFERENCES measurements_units(id) ON DELETE CASCADE,
+    source INT, INDEX source__idx (source), FOREIGN KEY (source) REFERENCES measurements_sources(id) ON DELETE CASCADE,
+    measured_by VARCHAR(100),
+    timestamp_taken VARCHAR(100),
+    created_by VARCHAR(100),
+    timestamp_created DATETIME,
+    modified_by VARCHAR(100),
+    timestamp_modified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2010-10-14T14:24:46.944132
+CREATE TABLE measurements(
+    id INT AUTO_INCREMENT NOT NULL,
+    target_id INT,
+    item INT, INDEX item__idx (item), FOREIGN KEY (item) REFERENCES measurements_properties(id) ON DELETE CASCADE,
+    value VARCHAR(100),
+    units INT, INDEX units__idx (units), FOREIGN KEY (units) REFERENCES measurements_units(id) ON DELETE CASCADE,
+    source INT, INDEX source__idx (source), FOREIGN KEY (source) REFERENCES measurements_sources(id) ON DELETE CASCADE,
+    measured_by VARCHAR(100),
+    timestamp_taken VARCHAR(100),
+    created_by VARCHAR(100),
+    timestamp_created DATETIME,
+    modified_by VARCHAR(100),
+    timestamp_modified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-14T14:31:58.444640
+CREATE TABLE measurements_properties(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    property CHAR(100)
+);
+success!
+timestamp: 2010-10-14T14:31:58.460124
+CREATE TABLE measurements_units(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    unit CHAR(100)
+);
+success!
+timestamp: 2010-10-14T14:31:58.474397
+CREATE TABLE measurements_sources(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    source CHAR(100)
+);
+success!
+timestamp: 2010-10-14T14:31:58.500481
+CREATE TABLE measurements(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    target_id INTEGER,
+    item INTEGER REFERENCES measurements_properties(id) ON DELETE CASCADE,
+    value CHAR(100),
+    units INTEGER REFERENCES measurements_units(id) ON DELETE CASCADE,
+    source INTEGER REFERENCES measurements_sources(id) ON DELETE CASCADE,
+    measured_by CHAR(100),
+    timestamp_taken CHAR(100),
+    created_by CHAR(100),
+    timestamp_created TIMESTAMP,
+    modified_by CHAR(100),
+    timestamp_modified TIMESTAMP
+);
+success!
+timestamp: 2010-10-14T14:33:01.863082
+ALTER TABLE measurements DROP COLUMN item;
+timestamp: 2010-10-14T14:45:14.342865
+CREATE TABLE measurements(
+    id INT AUTO_INCREMENT NOT NULL,
+    target_id INT,
+    property INT, INDEX property__idx (property), FOREIGN KEY (property) REFERENCES measurements_properties(id) ON DELETE CASCADE,
+    value VARCHAR(100),
+    units INT, INDEX units__idx (units), FOREIGN KEY (units) REFERENCES measurements_units(id) ON DELETE CASCADE,
+    source INT, INDEX source__idx (source), FOREIGN KEY (source) REFERENCES measurements_sources(id) ON DELETE CASCADE,
+    measured_by VARCHAR(100),
+    timestamp_taken VARCHAR(100),
+    created_by VARCHAR(100),
+    timestamp_created DATETIME,
+    modified_by VARCHAR(100),
+    timestamp_modified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2010-10-14T14:45:34.751546
+CREATE TABLE measurements(
+    id INT AUTO_INCREMENT NOT NULL,
+    target_id INT,
+    property INT, INDEX property__idx (property), FOREIGN KEY (property) REFERENCES measurements_properties(id) ON DELETE CASCADE,
+    value VARCHAR(100),
+    units INT, INDEX units__idx (units), FOREIGN KEY (units) REFERENCES measurements_units(id) ON DELETE CASCADE,
+    source INT, INDEX source__idx (source), FOREIGN KEY (source) REFERENCES measurements_sources(id) ON DELETE CASCADE,
+    measured_by VARCHAR(100),
+    timestamp_taken VARCHAR(100),
+    created_by VARCHAR(100),
+    timestamp_created DATETIME,
+    modified_by VARCHAR(100),
+    timestamp_modified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-15T10:38:58.490535
+CREATE TABLE auth_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(128),
+    last_name VARCHAR(128),
+    email VARCHAR(512),
+    password VARCHAR(512),
+    registration_key VARCHAR(512),
+    reset_password_key VARCHAR(512),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-15T10:38:58.583978
+CREATE TABLE auth_group(
+    id INT AUTO_INCREMENT NOT NULL,
+    role VARCHAR(512),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-15T10:38:58.605255
+CREATE TABLE auth_membership(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INT, INDEX group_id__idx (group_id), FOREIGN KEY (group_id) REFERENCES auth_group(id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-15T10:38:58.615281
+CREATE TABLE auth_permission(
+    id INT AUTO_INCREMENT NOT NULL,
+    group_id INT, INDEX group_id__idx (group_id), FOREIGN KEY (group_id) REFERENCES auth_group(id) ON DELETE CASCADE,
+    name VARCHAR(512),
+    table_name VARCHAR(512),
+    record_id INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-15T10:38:58.625777
+CREATE TABLE auth_event(
+    id INT AUTO_INCREMENT NOT NULL,
+    time_stamp DATETIME,
+    client_ip VARCHAR(512),
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin VARCHAR(512),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-15T11:32:52.563713
+ALTER TABLE auth_user ADD phone VARCHAR(128);
+success!
+timestamp: 2010-10-15T11:32:52.593948
+ALTER TABLE auth_user ADD registration_id VARCHAR(512);
+success!
+timestamp: 2010-10-15T11:32:52.626523
+ALTER TABLE auth_user ADD institutional_affiliation VARCHAR(128);
+success!
+timestamp: 2010-10-15T11:32:52.636004
+ALTER TABLE auth_user ADD email__tmp VARCHAR(128) UNIQUE;
+success!
+UPDATE auth_user SET email__tmp=email;
+success!
+ALTER TABLE auth_user DROP COLUMN email;
+success!
+ALTER TABLE auth_user ADD email VARCHAR(128) UNIQUE;
+success!
+UPDATE auth_user SET email=email__tmp;
+success!
+ALTER TABLE auth_user DROP COLUMN email__tmp;
+success!
+timestamp: 2010-10-15T13:32:06.631323
+ALTER TABLE auth_user ADD city VARCHAR(128);
+success!
+timestamp: 2010-10-15T13:32:06.663232
+ALTER TABLE auth_user ADD country VARCHAR(128);
+success!
+timestamp: 2010-10-15T13:32:06.685408
+ALTER TABLE auth_user ADD state VARCHAR(128);
+success!
+timestamp: 2010-10-15T13:32:06.696535
+ALTER TABLE auth_user DROP COLUMN phone;
+success!
+timestamp: 2010-10-15T13:32:48.502031
+ALTER TABLE auth_user ADD state_or_province VARCHAR(128);
+success!
+timestamp: 2010-10-15T13:32:48.528220
+ALTER TABLE auth_user DROP COLUMN state;
+success!
+timestamp: 2010-10-20T16:50:40.745929
+ALTER TABLE auth_user ADD role VARCHAR(128);
+success!
+timestamp: 2010-10-27T14:35:24.643637
+ALTER TABLE measurements_properties ADD property_name VARCHAR(100);
+success!
+timestamp: 2010-10-27T14:35:24.676396
+ALTER TABLE measurements_properties DROP COLUMN property;
+success!
+timestamp: 2010-10-27T14:35:24.731922
+ALTER TABLE measurements_units ADD unit_name VARCHAR(100);
+success!
+timestamp: 2010-10-27T14:35:24.740659
+ALTER TABLE measurements_units DROP COLUMN unit;
+success!
+timestamp: 2010-10-27T14:35:24.754085
+ALTER TABLE measurements_sources ADD source_name VARCHAR(100);
+success!
+timestamp: 2010-10-27T14:35:24.762697
+ALTER TABLE measurements_sources DROP COLUMN source;
+success!
+timestamp: 2010-10-28T13:49:22.829921
+CREATE TABLE measurements_properties(
+    id INT AUTO_INCREMENT NOT NULL,
+    property_name VARCHAR(100),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2010-10-28T13:59:41.459401
+CREATE TABLE measurements_properties(
+    id INT AUTO_INCREMENT NOT NULL,
+    property_name VARCHAR(100),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-28T13:59:41.474879
+CREATE TABLE measurements_units(
+    id INT AUTO_INCREMENT NOT NULL,
+    unit_name VARCHAR(100),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-28T13:59:41.481965
+CREATE TABLE measurements_sources(
+    id INT AUTO_INCREMENT NOT NULL,
+    source_name VARCHAR(100),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-28T13:59:41.492556
+CREATE TABLE measurements(
+    id INT AUTO_INCREMENT NOT NULL,
+    target_id INT,
+    property INT, INDEX property__idx (property), FOREIGN KEY (property) REFERENCES measurements_properties(id) ON DELETE CASCADE,
+    value VARCHAR(100),
+    units INT, INDEX units__idx (units), FOREIGN KEY (units) REFERENCES measurements_units(id) ON DELETE CASCADE,
+    source INT, INDEX source__idx (source), FOREIGN KEY (source) REFERENCES measurements_sources(id) ON DELETE CASCADE,
+    measured_by VARCHAR(100),
+    timestamp_taken VARCHAR(100),
+    created_by VARCHAR(100),
+    timestamp_created DATETIME,
+    modified_by VARCHAR(100),
+    timestamp_modified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-28T15:27:14.794501
+ALTER TABLE measurements ADD timestamp_taken__tmp DATETIME;
+success!
+UPDATE measurements SET timestamp_taken__tmp=timestamp_taken;
+success!
+ALTER TABLE measurements DROP COLUMN timestamp_taken;
+success!
+ALTER TABLE measurements ADD timestamp_taken DATETIME;
+success!
+UPDATE measurements SET timestamp_taken=timestamp_taken__tmp;
+success!
+ALTER TABLE measurements DROP COLUMN timestamp_taken__tmp;
+success!
+timestamp: 2010-10-28T16:12:30.771834
+CREATE TABLE auth_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(128),
+    last_name VARCHAR(128),
+    role VARCHAR(128),
+    institutional_affiliation VARCHAR(128),
+    city VARCHAR(128),
+    state_or_province VARCHAR(128),
+    country VARCHAR(128),
+    email VARCHAR(128) UNIQUE,
+    password VARCHAR(512),
+    registration_key VARCHAR(512),
+    reset_password_key VARCHAR(512),
+    registration_id VARCHAR(512),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2010-10-28T16:14:31.990928
+CREATE TABLE auth_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(128),
+    last_name VARCHAR(128),
+    role VARCHAR(128),
+    institutional_affiliation VARCHAR(128),
+    city VARCHAR(128),
+    state_or_province VARCHAR(128),
+    country VARCHAR(128),
+    email VARCHAR(128) UNIQUE,
+    password VARCHAR(512),
+    registration_key VARCHAR(512),
+    reset_password_key VARCHAR(512),
+    registration_id VARCHAR(512),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2010-10-28T16:15:22.216793
+CREATE TABLE measurements_properties(
+    id INT AUTO_INCREMENT NOT NULL,
+    property_name VARCHAR(100),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-28T16:15:22.225754
+CREATE TABLE measurements_units(
+    id INT AUTO_INCREMENT NOT NULL,
+    unit_name VARCHAR(100),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-28T16:15:22.243083
+CREATE TABLE measurements_sources(
+    id INT AUTO_INCREMENT NOT NULL,
+    source_name VARCHAR(100),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2010-10-28T16:16:36.624305
+CREATE TABLE measurements(
+    id INT AUTO_INCREMENT NOT NULL,
+    target_id INT,
+    property INT, INDEX property__idx (property), FOREIGN KEY (property) REFERENCES measurements_properties(id) ON DELETE CASCADE,
+    value VARCHAR(100),
+    units INT, INDEX units__idx (units), FOREIGN KEY (units) REFERENCES measurements_units(id) ON DELETE CASCADE,
+    source INT, INDEX source__idx (source), FOREIGN KEY (source) REFERENCES measurements_sources(id) ON DELETE CASCADE,
+    measured_by VARCHAR(100),
+    timestamp_taken DATETIME,
+    created_by VARCHAR(100),
+    timestamp_created DATETIME,
+    modified_by VARCHAR(100),
+    timestamp_modified DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-01-25T10:35:35.576135
+ALTER TABLE auth_user ADD registration_id__tmp VARCHAR(255);
+success!
+UPDATE auth_user SET registration_id__tmp=registration_id;
+success!
+ALTER TABLE auth_user DROP COLUMN registration_id;
+success!
+ALTER TABLE auth_user ADD registration_id VARCHAR(255);
+success!
+UPDATE auth_user SET registration_id=registration_id__tmp;
+success!
+ALTER TABLE auth_user DROP COLUMN registration_id__tmp;
+success!
+timestamp: 2011-01-25T10:35:35.663113
+ALTER TABLE auth_user ADD reset_password_key__tmp VARCHAR(255);
+success!
+UPDATE auth_user SET reset_password_key__tmp=reset_password_key;
+success!
+ALTER TABLE auth_user DROP COLUMN reset_password_key;
+success!
+ALTER TABLE auth_user ADD reset_password_key VARCHAR(255);
+success!
+UPDATE auth_user SET reset_password_key=reset_password_key__tmp;
+success!
+ALTER TABLE auth_user DROP COLUMN reset_password_key__tmp;
+success!
+timestamp: 2011-01-25T10:35:35.736692
+ALTER TABLE auth_user ADD password__tmp VARCHAR(255);
+success!
+UPDATE auth_user SET password__tmp=password;
+success!
+ALTER TABLE auth_user DROP COLUMN password;
+success!
+ALTER TABLE auth_user ADD password VARCHAR(255);
+success!
+UPDATE auth_user SET password=password__tmp;
+success!
+ALTER TABLE auth_user DROP COLUMN password__tmp;
+success!
+timestamp: 2011-01-25T10:35:35.802639
+ALTER TABLE auth_user ADD registration_key__tmp VARCHAR(255);
+success!
+UPDATE auth_user SET registration_key__tmp=registration_key;
+success!
+ALTER TABLE auth_user DROP COLUMN registration_key;
+success!
+ALTER TABLE auth_user ADD registration_key VARCHAR(255);
+success!
+UPDATE auth_user SET registration_key=registration_key__tmp;
+success!
+ALTER TABLE auth_user DROP COLUMN registration_key__tmp;
+success!
+timestamp: 2011-01-25T10:35:35.892687
+ALTER TABLE auth_group ADD role__tmp VARCHAR(255);
+success!
+UPDATE auth_group SET role__tmp=role;
+success!
+ALTER TABLE auth_group DROP COLUMN role;
+success!
+ALTER TABLE auth_group ADD role VARCHAR(255);
+success!
+UPDATE auth_group SET role=role__tmp;
+success!
+ALTER TABLE auth_group DROP COLUMN role__tmp;
+success!
+timestamp: 2011-01-25T10:35:35.984446
+ALTER TABLE auth_permission ADD table_name__tmp VARCHAR(255);
+success!
+UPDATE auth_permission SET table_name__tmp=table_name;
+success!
+ALTER TABLE auth_permission DROP COLUMN table_name;
+success!
+ALTER TABLE auth_permission ADD table_name VARCHAR(255);
+success!
+UPDATE auth_permission SET table_name=table_name__tmp;
+success!
+ALTER TABLE auth_permission DROP COLUMN table_name__tmp;
+success!
+timestamp: 2011-01-25T10:35:36.056674
+ALTER TABLE auth_permission ADD name__tmp VARCHAR(255);
+success!
+UPDATE auth_permission SET name__tmp=name;
+success!
+ALTER TABLE auth_permission DROP COLUMN name;
+success!
+ALTER TABLE auth_permission ADD name VARCHAR(255);
+success!
+UPDATE auth_permission SET name=name__tmp;
+success!
+ALTER TABLE auth_permission DROP COLUMN name__tmp;
+success!
+timestamp: 2011-01-25T10:35:36.146596
+ALTER TABLE auth_event ADD origin__tmp VARCHAR(255);
+success!
+UPDATE auth_event SET origin__tmp=origin;
+success!
+ALTER TABLE auth_event DROP COLUMN origin;
+success!
+ALTER TABLE auth_event ADD origin VARCHAR(255);
+success!
+UPDATE auth_event SET origin=origin__tmp;
+success!
+ALTER TABLE auth_event DROP COLUMN origin__tmp;
+success!
+timestamp: 2011-01-25T10:35:36.230024
+ALTER TABLE auth_event ADD client_ip__tmp VARCHAR(255);
+success!
+UPDATE auth_event SET client_ip__tmp=client_ip;
+success!
+ALTER TABLE auth_event DROP COLUMN client_ip;
+success!
+ALTER TABLE auth_event ADD client_ip VARCHAR(255);
+success!
+UPDATE auth_event SET client_ip=client_ip__tmp;
+success!
+ALTER TABLE auth_event DROP COLUMN client_ip__tmp;
+success!

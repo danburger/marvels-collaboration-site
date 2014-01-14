@@ -1,0 +1,18 @@
+{{extend 'marvels_layout.html'}}
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Institutional Affiliation</th>
+      <th>City</th>
+      <th>State or Province</th>
+      <th>Country</th>
+      <th>Approve</th>
+      <th>Deny</th>
+    </tr>
+  </thead>  
+<tbody>
+{{for entry in users:}}
+     {{=TR(entry.first_name, entry.last_name, entry.institutional_affiliation, entry.city, entry.state_or_province, entry.country, A('Approve', _href=URL('approve_users', args=['approve',entry.id])), A('Deny', _href=URL('approve_users', args=['deny',entry.id])))}}
+{{pass}}
+</tbody>

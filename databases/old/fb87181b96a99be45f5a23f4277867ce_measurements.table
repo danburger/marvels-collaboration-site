@@ -1,0 +1,50 @@
+(dp1
+S'timestamp_created'
+p2
+S'TIMESTAMP'
+p3
+sS'modified_by'
+p4
+S'CHAR(100)'
+p5
+sS'source'
+p6
+S'INTEGER REFERENCES measurements_sources(id) ON DELETE CASCADE'
+p7
+sS'timestamp_modified'
+p8
+S'TIMESTAMP'
+p9
+sS'target_id'
+p10
+S'INTEGER'
+p11
+sS'value'
+p12
+S'CHAR(100)'
+p13
+sS'item'
+p14
+S'INTEGER REFERENCES measurements_properties(id) ON DELETE CASCADE'
+p15
+sS'measured_by'
+p16
+S'CHAR(100)'
+p17
+sS'created_by'
+p18
+S'CHAR(100)'
+p19
+sS'units'
+p20
+S'INTEGER REFERENCES measurements_units(id) ON DELETE CASCADE'
+p21
+sS'id'
+p22
+S'INTEGER PRIMARY KEY AUTOINCREMENT'
+p23
+sS'timestamp_taken'
+p24
+S'CHAR(100)'
+p25
+s.

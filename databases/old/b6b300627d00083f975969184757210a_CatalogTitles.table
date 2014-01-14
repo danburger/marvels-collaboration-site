@@ -1,0 +1,14 @@
+(dp1
+S'DataType'
+p2
+S'VARCHAR(512)'
+p3
+sS'id'
+p4
+S'INT AUTO_INCREMENT NOT NULL'
+p5
+sS'Title'
+p6
+S'VARCHAR(512)'
+p7
+s.

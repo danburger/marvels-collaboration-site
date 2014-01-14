@@ -1,0 +1,14 @@
+(dp1
+S'id'
+p2
+S'INT AUTO_INCREMENT NOT NULL'
+p3
+sS'Value'
+p4
+S'DOUBLE'
+p5
+sS'CatalogID'
+p6
+S'INT'
+p7
+s.

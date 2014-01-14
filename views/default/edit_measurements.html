@@ -1,0 +1,38 @@
+{{extend 'marvels_layout.html'}}
+{{=form.custom.begin}}
+<table>
+<tr><td>Property:</td><td>{{=form.custom.widget.property}}<br />
+<table id="new_property_form"><tr><td>New property:</td><td>{{=property_form.custom.widget.property_name}}</td></table>
+</td></tr>
+<tr><td>Value:</td><td>{{=form.custom.widget.value}}{{=form.custom.widget.units}}</td></tr>
+<tr><td>Source:</td><td>{{=form.custom.widget.source}}<br />
+<table id="new_source_form"><tr><td>New source:</td><td>{{=source_form.custom.widget.source_name}}</td></table>
+</td></tr>
+<tr><td>Measured by:</td><td>{{=form.custom.widget.measured_by}}</td></tr>
+<tr><td>Time of measurement <b>(UTC)</b>:</td><td>{{=form.custom.widget.timestamp_taken}}</td></tr>
+<tr><td> </td><td>{{=form.custom.submit}}</td></tr>
+</table>
+{{=form.custom.end}}
+
+    <script type="text/javascript">
+      $("#measurements_timestamp_taken").AnyTime_picker(
+          { format: "%Y-%m-%d %T",
+            placement: "inline",
+            latest: new Date() } );
+      $(document).ready(function(){
+         if($('#measurements_property').attr('value') == 1)
+             $('#new_property_form').show();
+         else $('#new_property_form').hide();
+         $('#measurements_property').change(function(){
+             if($('#measurements_property').attr('value') == 1)
+                 $('#new_property_form').show();
+             else $('#new_property_form').hide();});
+         if($('#measurements_source').attr('value') == 1)
+             $('#new_source_form').show();
+         else $('#new_source_form').hide();
+         $('#measurements_source').change(function(){
+             if($('#measurements_source').attr('value') == 1)
+                 $('#new_source_form').show();
+             else $('#new_source_form').hide();});
+     });
+    </script>

@@ -1,0 +1,64 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/marvels/static/anytime/anytime.css" />
+    <script type="text/javascript" src="/marvels/static/anytime/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="/marvels/static/anytime/anytime.js"></script>
+    <script type="text/javascript" src="/marvels/static/anytime/anytimetz.js"></script>
+    
+    <style type="text/css" media="screen">
+
+    /*@import "/marvels/static/filtergrid.css";*/
+    /*====================================================
+        - html elements
+    =====================================================*/
+    body{ 
+        margin:15px; /*padding:15px; border:1px solid #666;*/
+        font-family:Arial, Helvetica, sans-serif; /*font-size:88%; */
+    }
+    h2{ margin-top: 50px; }
+    table{ border:1px solid #ccc; font-size:85%; }
+    th{
+        background:#4A4A4A url(/marvels/static/images/bg_th.jpg) left top repeat-x; 
+        border-left:1px solid #C7C7C7;
+        padding:5px; color:#fff; height:25px;
+    }
+    td{ padding:5px; border-bottom:1px solid #ccc; border-right:1px solid #ccc; 
+    vertical-align:top;}
+    pre{ margin:5px; padding:5px; background-color:#f4f4f4; border:1px solid #ccc; }
+    
+    tr.Ref td {
+    background-color: #CEFAFA; color: black;
+    }
+    tr.Bright td {
+    background-color: #FAFACE; color: black;
+    }
+    tr.F8 td {
+    background-color: #FADACE; color: black;
+    }
+    tr.Cooler td {
+    background-color: #DBFACE; color: black;
+    }
+    
+    input[type=text] { width:300px;}
+    
+    /*====================================================
+        - TF grid classes
+    =====================================================*/
+    .myLoader{ 
+        position:absolute; padding: 5px 5px 5px 5px;
+        margin:100px 0 0 15px; width:auto; 
+        z-index:1000; font-size:12px; font-weight:bold;
+        border:1px solid #666; background:#ffffcc; 
+        vertical-align:middle;
+    }
+    
+    </style>
+    
+</head>
+<body>
+
+{{include}}
+
+
+</body>
+</html>

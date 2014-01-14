@@ -1,0 +1,17 @@
+{{extend 'marvels_layout.html'}}
+{{if request.args(0)=='register':}}
+<p><i>Once you submit this form, you will need to wait for an administrator to approve your registration.<br />
+If you do not get a response within 48 hours, please send an e-mail.</i></p>
+{{pass}}
+{{if request.args(0)=='login':}}
+<p><b>Welcome to the MARVELS collaboration page. Please log in or register.</b></p>
+{{pass}}
+{{=form}}
+{{if request.args(0)=='login':}}
+{{if not 'register' in auth.settings.actions_disabled:}}
+<br/><a href="{{=URL(r=request,args='register')}}">register</a>
+{{pass}}
+{{if not 'request_reset_password' in auth.settings.actions_disabled:}}
+<br/><a href="{{=URL(r=request,args='request_reset_password')}}">lost password</a>
+{{pass}}
+{{pass}}

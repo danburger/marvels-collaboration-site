@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{{=response.title}} - MARVELS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+
+<style type="text/css" media="screen">
+
+    @import "/marvels/static/filtergrid.css";
+    @import "/marvelsdev/static/superfish.css";
+    /*====================================================
+        - html elements
+    =====================================================*/
+    body{ 
+        margin:15px; /*padding:15px; border:1px solid #666;*/
+        font-family:Arial, Helvetica, sans-serif; /*font-size:88%; */
+    }
+    h2{ margin-top: 50px; }
+    table{ border:1px solid #ccc; font-size:85%; }
+    th{
+        background:#4A4A4A url(/marvels/static/images/bg_th.jpg) left top repeat-x; 
+        border-left:1px solid #C7C7C7;
+        padding:5px; color:#fff; height:25px;
+    }
+    td{ padding:5px; border-bottom:1px solid #ccc; border-right:1px solid #ccc; }
+    pre{ margin:5px; padding:5px; background-color:#f4f4f4; border:1px solid #ccc; }
+    
+    tr.Ref td {
+    background-color: #CEFAFA; color: black;
+    }
+    tr.Bright td {
+    background-color: #FAFACE; color: black;
+    }
+    tr.F8 td {
+    background-color: #FADACE; color: black;
+    }
+    tr.Cooler td {
+    background-color: #DBFACE; color: black;
+    }
+    
+    /*====================================================
+        - TF grid classes
+    =====================================================*/
+    .myLoader{ 
+        position:absolute; padding: 5px 5px 5px 5px;
+        margin:100px 0 0 15px; width:auto; 
+        z-index:1000; font-size:12px; font-weight:bold;
+        border:1px solid #666; background:#ffffcc; 
+        vertical-align:middle;
+    }
+</style>
+
+<script src="/marvels/static/tablefilter.js" language="javascript" type="text/javascript"></script>
+<!-- Additional imported modules needed for this demo  -->
+<script src="/marvels/static/TF_Modules/tf_paging.js" language="javascript" type="text/javascript"></script>
+<script src="/marvels/static/sortabletable.js" language="javascript" type="text/javascript"></script>
+<script src="/marvels/static/jquery.js" language="javascript" type="text/javascript"></script>
+<script src="/marvels/static/superfish.js" language="javascript" type="text/javascript"></script>
+<script src="/marvels/static/tfAdapter.sortabletable.js" language="javascript" type="text/javascript"></script> 
+<!-- -->
+
+
+
+</head>
+<body>
+
+{{=MENU(response.menu,_class='sf-menu')}}<br />
+
+{{try:}}{{=auth.navbar(action=URL(request.application,'default','user'))}}{{except:pass}}
+
+<h1>{{for item in menu:}}
+{{=item}}
+{{=" >> "}}
+{{pass}}
+{{=response.title}}
+{{if(options):}}
+{{=options}}
+{{pass}}
+</h1>
+
+<p><i>Click on the table headers to sort ascending or decending.<br />Use the edit fields above the headers to filter the table. For example, "&gt;500" to show only items where the value exceeds 500.<br />You may use &lt;, &gt;, &lt;=, &gt;= as well as &amp;&amp; for AND and || for OR. For example, "&gt;=100&amp;&amp;&lt;=200" to find items where the value is between 100 and 200.</i></p>
+
+<div style="width:auto;">
+<span id="col_mgr_btn" class="noprint"></span>
+<table id="mytable" cellpadding="0" cellspacing="0" width="auto">
+{{include}}
+</table>
+</div>
+
+<script language="javascript" type="text/javascript">
+//<![CDATA[ 
+    var props = {
+    sort: true,
+    sort_config:{sort_types:[{{response.write(sort_types, escape=False)}}]},
+    on_keyup: true,  
+    on_keyup_delay: 150,
+    loader: true,
+    extensions: {
+        name:['ColsVisibility'],
+        src:['/marvels/static/TFExt_ColsVisibility/TFExt_ColsVisibility.js'],
+        description:['Columns visibility manager'],
+        initialize:[function(o){o.SetColsVisibility();}] 
+    },
+
+    /*** Columns Visibility Manager extension properties ***/  
+    btn_showHide_cols_html: '<button>Show/hide columns ▼</button>',
+    btn_showHide_cols_target_id: 'col_mgr_btn',
+    showHide_enable_tick_all: true,
+    showHide_tick_all_text: '(Show all columns)',
+    showHide_cols_tick_to_hide: false, 
+    btn_showHide_cols_close_html: '<button>Close</button>',  
+    showHide_cols_text: '',
+    showHide_cols_at_start: {{=hide_cols}},   
+ 
+    }
+    var tf = setFilterGrid("mytable", props);
+    
+            $(document).ready(function(){
+              jQuery('ul.sf-menu').superfish({delay:400});})
+    
+    function showAllColumns()
+    {
+        for(var i=0; i<100; i=i+1)
+        {
+            tf_mytable.ShowCol(i);
+        } 
+    }
+//]]>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

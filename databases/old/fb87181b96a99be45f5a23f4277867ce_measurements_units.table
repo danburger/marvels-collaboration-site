@@ -1,0 +1,10 @@
+(dp1
+S'id'
+p2
+S'INTEGER PRIMARY KEY AUTOINCREMENT'
+p3
+sS'unit'
+p4
+S'CHAR(100)'
+p5
+s.

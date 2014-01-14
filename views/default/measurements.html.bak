@@ -1,0 +1,21 @@
+{{extend 'marvels_layout.html'}}
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Value</th>
+      <th>Units</th>
+      <th>Source</th>
+      <th>Measured by</th>
+      <th>Time measured</th>
+      <th>Created by</th>
+      <th>Time created</th>
+      <th>Modified by</th>
+      <th>Time modified</th>
+      <th>Edit</th>
+    </tr>
+  </thead>  
+<tbody>
+{{for entry in measurements:}}
+     {{=TR(db.measurements_properties[entry.property].property_name, entry.value, units[entry.units-1].unit_name, sources[entry.source-1].source_name, entry.measured_by, entry.timestamp_taken, entry.created_by, entry.timestamp_created, entry.modified_by, entry.timestamp_modified, A('Edit', _href=URL('edit_measurements', args=entry.id)))}}
+{{pass}}
+</tbody>

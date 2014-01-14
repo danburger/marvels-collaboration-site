@@ -1,0 +1,22 @@
+(dp1
+S'target_number'
+p2
+S'INT'
+p3
+sS'gsc_b_mag'
+p4
+S'DOUBLE'
+p5
+sS'field_id'
+p6
+S'INT'
+p7
+sS'id'
+p8
+S'INT AUTO_INCREMENT NOT NULL'
+p9
+sS'gsc_v_mag'
+p10
+S'LONGTEXT'
+p11
+s.

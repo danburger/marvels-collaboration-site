@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+
+{{if layout=="table":}}
+    <link rel="stylesheet" type="text/css" href="/marvels/static/filtergrid.css" />
+    <script src="/marvels/static/tablefilter.js" language="javascript" type="text/javascript"></script>
+    <script src="/marvels/static/TF_Modules/tf_paging.js" language="javascript" type="text/javascript"></script>
+    <script src="/marvels/static/sortabletable.js" language="javascript" type="text/javascript"></script>
+    <script src="/marvels/static/tfAdapter.sortabletable.js" language="javascript" type="text/javascript"></script>
+{{pass}}
+
+{{if layout=="form":}}
+    <link rel="stylesheet" type="text/css" href="/marvels/static/anytime/anytime.css" />
+    <script type="text/javascript" src="/marvels/static/anytime/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="/marvels/static/anytime/anytime.js"></script>
+    <script type="text/javascript" src="/marvels/static/anytime/anytimetz.js"></script>
+{{pass}}   
+
+{{if layout=="table" or layout=="form":}}
+    <title>{{=response.title}} - MARVELS</title>
+{{pass}}
+
+{{if layout=="none":}}
+    <title>{{try:}}{{=T( request.args(0).replace('_',' ').capitalize() )}}{{except:}}{{=response.title}}{{pass}} - MARVELS</title>
+{{pass}}
+    
+    <style>
+    body {margin: 0px; font-family:Arial,Helvetica,sans-serif;}
+    h1 {margin:0px;}
+    h2 {margin:0px;}
+    p.login {margin:0px;}
+    tr.user-accounts a:link {color:#FFFFFF; text-decoration:none;} 
+    tr.user-accounts a:visited {color:#FFFFFF; text-decoration:none;}
+    tr.user-accounts a:hover {color:#FFFFFF; text-decoration:underline;} 
+    tr.user-accounts a:active {color:#FFFFFF; text-decoration:underline;}
+    tr.navigation a:link {color:#FFFFFF; text-decoration:none;} 
+    tr.navigation a:visited {color:#FFFFFF; text-decoration:none;}
+    tr.navigation a:hover {color:#FFFFFF; text-decoration:underline;} 
+    tr.navigation a:active {color:#FFFFFF; text-decoration:underline;}
+    tr.message a:link {color:#000000; text-decoration:none;} 
+    tr.message a:visited {color:#000000; text-decoration:none;}
+    tr.message a:hover {color:#000000; text-decoration:underline;} 
+    tr.message a:active {color:#000000; text-decoration:underline;}
+
+{{if layout=="table":}}
+    /*@import "/marvels/static/filtergrid.css";*/
+    table.data{ border:1px solid #ccc; font-size:85%; }
+    table.data th{
+        background:#4A4A4A url(/marvels/static/images/bg_th.jpg) left top repeat-x; 
+        border-left:1px solid #C7C7C7;
+        padding:5px; color:#fff; height:25px;
+    }
+    table.data td{ padding:5px; border-bottom:1px solid #ccc; border-right:1px solid #ccc; }
+    table.data pre{ margin:5px; padding:5px; background-color:#f4f4f4; border:1px solid #ccc; }
+    table.data tr.Ref td { background-color: #CEFAFA; color: black; }
+    table.data tr.Bright td { background-color: #FAFACE; color: black; }
+    table.data tr.F8 td { background-color: #FADACE; color: black; }
+    table.data tr.Cooler td { background-color: #DBFACE; color: black; }
+    
+    .myLoader{ 
+        position:absolute; padding: 5px 5px 5px 5px;
+        margin:100px 0 0 15px; width:auto; 
+        z-index:1000; font-size:12px; font-weight:bold;
+        border:1px solid #666; background:#ffffcc; 
+        vertical-align:middle;
+    }
+{{pass}}
+
+{{if layout=="form" or layout=="none":}}
+    input[type=text] {width:300px;}
+    input[type=password] {width:300px;}
+    td{vertical-align:top;}
+{{pass}}
+
+    </style>
+</head>
+<body>
+<table style="text-align: left; width: 100%; margin-left: auto; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+  <tbody>
+
+<!-- User account row -->
+    <tr class="user-accounts">
+      <td style="padding: 10px 25px 5px; vertical-align: top; background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); vertical-align: middle;">
+        {{count_approvals=db(db.auth_user.registration_key=="pending").count()}}<b><a href={{="/"+request.application+"/default/index"}}>{{try:}}{{=auth.user.first_name}}&nbsp;{{=auth.user.last_name}}</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href={{="/"+request.application+"/default/user/logout"}}>Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href={{="/"+request.application+"/default/user_list"}}>User list</a>{{if(auth.has_membership('admin')):}}&nbsp;&nbsp;&nbsp;&nbsp;<a href={{="/"+request.application+"/default/approve_users"}}>Approve users{{if count_approvals>0:}} ({{=count_approvals}}){{pass}}</a>{{pass}}&nbsp;&nbsp;&nbsp;&nbsp;<a href={{="/"+request.application+"/default/user/profile"}}>Edit profile</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href={{="/"+request.application+"/default/user/change_password"}}>Change password</a>{{except:}}</a></b><a href={{="/"+request.application+"/default/user/login"}}>Login</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href={{="/"+request.application+"/default/user/register"}}>Register</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href={{="/"+request.application+"/default/user/request_reset_password"}}>Lost password?</a>{{pass}}
+<!--{{=auth.navbar(action=URL(request.application, 'default','user'))}}-->
+      </td>
+    </tr>
+
+<!-- Navigation row -->
+    <tr class="navigation">
+      <td colspan="2" rowspan="1" style="padding: 0px 25px; vertical-align: middle; background-color: rgb(51, 51, 153); height: 40px; background-image: url(/{{=request.application}}/static/images/menu.png); background-repeat: repeat-x; color: rgb(255, 255, 255);">
+        <h2>
+        {{for item in menu:}}{{=item}}&nbsp;&nbsp;<img style="width: 8px; height: 16px;" alt=""
+ src="/marvels/static/images/arrow.png">&nbsp;&nbsp;{{pass}}{{if layout=="table" or layout=="form":}}{{=response.title}}
+{{pass}}{{if layout=="none":}}{{try:}}{{=T( request.args(0).replace('_',' ').capitalize() )}}{{except:}}{{=response.title}}{{pass}}{{pass}}       
+        </h2>
+      <span style="font-style: italic;"></span> </td>
+    </tr>
+
+<!-- Message and special actions row -->
+{{try:}}{{options}}{{except:}}{{options=None}}{{pass}}
+{{if len(response.flash)!=0 or not (options is None):}}
+    <tr class="message">
+      <td style="border-style: none none solid; border-color: black; border-width: 1px; padding: 0px 25px; vertical-align: middle; background-color: rgb(255, 255, 204); width: 25px; height: 30px; font-weight: bold; color: rgb(0, 0, 0);">
+        {{if len(response.flash)!=0:}}{{=response.flash}}{{pass}}
+        {{if len(response.flash)!=0 and not (options is None):}}&nbsp;{{pass}}
+        {{if not (options is None):}}{{=options}}{{pass}}
+      </td>
+    </tr>
+{{pass}}
+
+<!-- Main text row -->
+    <tr class="main-text">
+      <td style="padding: 25px; vertical-align: top; font-family: Arial,Helvetica,sans-serif; background-image: url(/marvels/static/images/page.png); background-repeat: repeat-x;">
+      
+{{if layout=="form" or layout=="none":}}
+      {{include}}
+{{pass}}
+
+{{if layout=="table":}}
+    <p><i>Click on the table headers to sort ascending or decending.<br />Use the edit fields above the headers to filter the table. For example, "&gt;500" to show only items where the value exceeds 500.<br />You may use &lt;, &gt;, &lt;=, &gt;= as well as &amp;&amp; for AND and || for OR. For example, "&gt;=100&amp;&amp;&lt;=200" to find items where the value is between 100 and 200.</i></p>
+    
+    <div style="width:100%;">
+    <span id="col_mgr_btn" class="noprint"></span>
+    <table class="data" id="mytable" cellpadding="0" cellspacing="0" width="auto">
+    {{include}}
+    </table>
+    </div>
+    
+    <script language="javascript" type="text/javascript">
+    //<![CDATA[ 
+        var props = {
+        sort: true,
+        sort_config:{sort_types:[{{response.write(sort_types, escape=False)}}]},
+        on_keyup: true,  
+        on_keyup_delay: 150,
+        extensions: {
+            name:['ColsVisibility'],
+            src:['/marvels/static/TFExt_ColsVisibility/TFExt_ColsVisibility.js'],
+            description:['Columns visibility manager'],
+            initialize:[function(o){o.SetColsVisibility();}] 
+        },
+    
+        /*** Columns Visibility Manager extension properties ***/  
+        btn_showHide_cols_html: '<button>Show/hide columns ▼</button>',
+        btn_showHide_cols_target_id: 'col_mgr_btn',
+        showHide_enable_tick_all: true,
+        showHide_tick_all_text: '(Show all columns)',
+        showHide_cols_tick_to_hide: false, 
+        btn_showHide_cols_close_html: '<button>Close</button>',  
+        showHide_cols_text: '',
+        showHide_cols_at_start: {{=hide_cols}},   
+     
+        }
+        var tf = setFilterGrid("mytable", props);
+    //]]>
+    </script>
+{{pass}}
+
+      <br />
+      <br />
+      <small>Hosted by Vanderbilt University. Powered by web2py</small>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+</body>
+</html>
